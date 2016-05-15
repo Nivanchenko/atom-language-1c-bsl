@@ -46,7 +46,7 @@ module.exports = Language1cBSL =
       args = args.concat(["-encoding=utf-8", "-check", filePath])
 
       # Execute checkstyle
-      helpers.exec("oscript", args, {stream: 'stdout', throwOnStdErr: false})
+      helpers.exec("oscript", args, {stream: 'stdout', throwOnStdErr: false, ignoreExitCode: true})
         .then (val) => @parse(val, textEditor)
 
   parse: (checkstyleOutput, textEditor) ->
