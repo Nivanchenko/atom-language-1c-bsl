@@ -37,5 +37,8 @@
     ВЫРАЗИТЬ(0 КАК Число) КАК Выражение,
 //  ^ keyword.control.sdbl
 //                 ^^^^^ support.type.sdbl
+    ВЫБОР КОГДА Неопределено ССЫЛКА Справочник.Справочник1 ТОГДА ИСТИНА КОНЕЦ КАК Ссылка,
+//                           ^^^^^^ keyword.operator.logical.sdbl
+//                                                                                ^^^^^^ not:keyword.operator.logical.sdbl
     &Параметр КАК Параметр
 //  ^^^^^^^^^ variable.parameter.sdbl
