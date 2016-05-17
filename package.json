@@ -53,12 +53,18 @@
       "default": false,
       "order": 20
     },
+    "linterEntryPoint": {
+      "description": "Entry point for OneScriptLinter. Relative path from project root folder",
+      "type": "string",
+      "default": "",
+      "order": 30
+    },
     "forceEnableExtendedUnicodeSupport": {
       "title": "Force enable 'Enable extended unicode support'",
       "description": "Disable this only if you get errors in autocomplete-plus package with **other** languages",
       "type": "boolean",
       "default": true,
-      "order": 30
+      "order": 40
     }
   }
 }

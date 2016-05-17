@@ -1,5 +1,6 @@
 {CompositeDisposable} = require 'atom'
 {EventEmitter} = require 'events'
+path = require 'path'
 helpers = require 'atom-linter'
 
 module.exports = Language1cBSL =
@@ -12,6 +13,7 @@ module.exports = Language1cBSL =
 
     @subscriptions.add atom.config.observe 'language-1c-bsl.enableOneScriptLinter', (@enableOneScriptLinter) =>
     @subscriptions.add atom.config.observe 'language-1c-bsl.lintBSLFiles', (@lintBSLFiles) =>
+    @subscriptions.add atom.config.observe 'language-1c-bsl.linterEntryPoint', (@linterEntryPoint) =>
     @subscriptions.add atom.config.observe 'language-1c-bsl.forceEnableExtendedUnicodeSupport', (enableExtendedUnicodeSupport) ->
       atom.config.set('autocomplete-plus.enableExtendedUnicodeSupport', enableExtendedUnicodeSupport)
     
@@ -44,6 +46,18 @@ module.exports = Language1cBSL =
       # Arguments to checkstyle
       args = []
       args = args.concat(["-encoding=utf-8", "-check", filePath])
+      if @linterEntryPoint
+        project_path = ''
+        filePath = atom.workspace.getActiveTextEditor().getPath()
+        projectPaths = atom.project.getPaths()
+        for projectPath in projectPaths
+          if filePath.indexOf(projectPath) > -1
+            if fs.statSync(projectPath).isDirectory()
+              project_path = projectPath
+            else
+              project_path = path.join(projectPath, '..')
+            break
+        args.push("-env=" + project_path + path.sep + @linterEntryPoint)
 
       # Execute checkstyle
       helpers.exec("oscript", args, {stream: 'stdout', throwOnStdErr: false, ignoreExitCode: true})
