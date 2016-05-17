@@ -12,7 +12,7 @@ module.exports = Language1cBSL =
     @subscriptions.add atom.commands.add 'atom-text-editor', 'language-1c-bsl:addpipe': => @addpipe()
 
     @subscriptions.add atom.config.observe 'language-1c-bsl.enableOneScriptLinter', (@enableOneScriptLinter) =>
-    @subscriptions.add atom.config.observe 'language-1c-bsl.lintBSLFiles', (@lintBSLFiles) =>
+    @subscriptions.add atom.config.observe 'language-1c-bsl.lintOtherExtensions', (@lintOtherExtensions) =>
     @subscriptions.add atom.config.observe 'language-1c-bsl.linterEntryPoint', (@linterEntryPoint) =>
     @subscriptions.add atom.config.observe 'language-1c-bsl.forceEnableExtendedUnicodeSupport', (enableExtendedUnicodeSupport) ->
       atom.config.set('autocomplete-plus.enableExtendedUnicodeSupport', enableExtendedUnicodeSupport)
@@ -41,7 +41,12 @@ module.exports = Language1cBSL =
       return [] unless @enableOneScriptLinter
 
       filePath = textEditor.getPath()
-      return [] if filePath.endsWith(".bsl") and not @lintBSLFiles
+      arrFilePath = filePath.split(".")
+      return [] if arrFilePath.length == 0
+      
+      extension = arrFilePath[arrFilePath.length - 1]
+      if extension isnt "os" and not otherExtensions.includes(extension)
+        return []
 
       # Arguments to checkstyle
       args = []

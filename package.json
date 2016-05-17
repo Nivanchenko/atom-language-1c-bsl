@@ -46,11 +46,11 @@
       "default": true,
       "order": 10
     },
-    "lintBSLFiles": {
-      "title": "Lint *.bsl files as *.os",
-      "description": "Enable this if you want to check `*.bsl` files via OneScriptLint",
-      "type": "boolean",
-      "default": false,
+    "lintOtherExtensions": {
+      "title": "Lint non-`*.os` files",
+      "description": "List of extensions (except `os`) to lint via OneScriptLint. (format - 'bsl,txt')",
+      "type": "string",
+      "default": "",
       "order": 20
     },
     "linterEntryPoint": {
