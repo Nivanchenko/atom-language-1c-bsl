@@ -45,7 +45,7 @@ module.exports = Language1cBSL =
       return [] if arrFilePath.length == 0
       
       extension = arrFilePath[arrFilePath.length - 1]
-      if extension isnt "os" and not otherExtensions.includes(extension)
+      if extension isnt "os" and not @lintOtherExtensions.includes(extension)
         return []
 
       # Arguments to checkstyle
