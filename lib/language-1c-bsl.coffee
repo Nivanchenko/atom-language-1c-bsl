@@ -62,7 +62,7 @@ module.exports = Language1cBSL =
             else
               project_path = path.join(projectPath, '..')
             break
-        args.push("-env=" + project_path + path.sep + @linterEntryPoint)
+        args.push("-env=" + path.join(project_path, @linterEntryPoint))
 
       # Execute checkstyle
       helpers.exec("oscript", args, {stream: 'stdout', throwOnStdErr: false, ignoreExitCode: true})
