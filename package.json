@@ -46,6 +46,13 @@
       "default": true,
       "order": 10
     },
+    "onescriptPath": {
+      "title": "OneScript path",
+      "description": "Full path to oscript binary. Fill this only if oscript is not in your $PATH",
+      "type": "string",
+      "default": "",
+      "order": 15
+    },
     "lintOtherExtensions": {
       "title": "Lint non-`*.os` files",
       "description": "List of extensions (except `os`) to lint via OneScriptLint. (format - 'bsl,txt')",

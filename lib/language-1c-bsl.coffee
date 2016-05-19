@@ -12,6 +12,7 @@ module.exports = Language1cBSL =
     @subscriptions.add atom.commands.add 'atom-text-editor', 'language-1c-bsl:addpipe': => @addpipe()
 
     @subscriptions.add atom.config.observe 'language-1c-bsl.enableOneScriptLinter', (@enableOneScriptLinter) =>
+    @subscriptions.add atom.config.observe 'language-1c-bsl.onescriptPath', (@onescriptPath) =>
     @subscriptions.add atom.config.observe 'language-1c-bsl.lintOtherExtensions', (@lintOtherExtensions) =>
     @subscriptions.add atom.config.observe 'language-1c-bsl.linterEntryPoint', (@linterEntryPoint) =>
     @subscriptions.add atom.config.observe 'language-1c-bsl.forceEnableExtendedUnicodeSupport', (enableExtendedUnicodeSupport) ->
@@ -30,6 +31,14 @@ module.exports = Language1cBSL =
     Reg2 = /^([^\|\"]|\"[^\"]*\")*\"[^\"]*$/
     if (Reg1.exec(textRow) isnt null) or (Reg2.exec(textRow) isnt null)
       editor.insertText '|'
+    
+  getCommandId: ->
+    if not @onescriptPath or @onescriptPath.length is 0
+      command = "oscript"
+    else
+      command = @onescriptPath
+    
+    command
 
   provideLinter: ->
     name: 'OneScriptLint'
@@ -65,7 +74,7 @@ module.exports = Language1cBSL =
         args.push("-env=" + path.join(project_path, @linterEntryPoint))
 
       # Execute checkstyle
-      helpers.exec("oscript", args, {stream: 'stdout', throwOnStdErr: false, ignoreExitCode: true})
+      helpers.exec(@getCommandId(), args, {stream: 'stdout', throwOnStdErr: false, ignoreExitCode: true})
         .then (val) => @parse(val, textEditor)
 
   parse: (checkstyleOutput, textEditor) ->
@@ -104,7 +113,7 @@ module.exports = Language1cBSL =
           run =
             name: 'OneScript: run',
             sh: false,
-            exec: 'oscript',
+            exec: @getCommandId(),
             args: [ '-encoding=utf-8', '{FILE_ACTIVE}' ],
             errorMatch: [
                 '^\\{Модуль (?<file>.+) / Ошибка в строке: (?<line>[0-9]+) / (?<message>.*)\\}$'
@@ -113,13 +122,13 @@ module.exports = Language1cBSL =
           compile =
             name: 'OneScript: compile',
             sh: false,
-            exec: 'oscript',
+            exec: @getCommandId(),
             args: [ '-encoding=utf-8', '-compile', '{FILE_ACTIVE}' ]
 
           make =
             name: 'OneScript: make',
             sh: false,
-            exec: 'oscript',
+            exec: @getCommandId(),
             args: [ '-encoding=utf-8', '-make', '{FILE_ACTIVE}', '{FILE_ACTIVE_NAME_BASE}.exe' ]
 
         ]
