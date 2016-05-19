@@ -34,7 +34,7 @@
 //                                  ^ invalid.illegal.bsl
 //                                                        ^ keyword.operator.bsl
     ПараметрСДефолтнымЧисловымЗначением = 0) Экспорт
-//                                      ^ keyword.operator.comparison.bsl
+//                                      ^ keyword.operator.assignment.bsl
 //                                        ^ constant.numeric.bsl
 //                                           ^ storage.modifier.bsl
     Б = "текст с экраннированной "" кавычкой" + "и конкатенаций""";
@@ -163,6 +163,23 @@
 //  ^ support.class.bsl
     А = ХранилищеПользовательскихНастроекДинамическихСписков.Сохранить();
 //      ^ support.variable.bsl
+
+    А = 0;
+//  ^ variable.assignment.bsl
+//    ^ keyword.operator.assignment.bsl
+
+    Б = А = 0;
+//  ^ variable.assignment.bsl
+//    ^ keyword.operator.assignment.bsl
+//        ^ keyword.operator.comparison.bsl
+
+    Если А = Б Тогда
+//       ^ not:variable.assignment.bsl
+//         ^ keyword.operator.comparison.bsl
+    ИначеЕсли ЗначениеЗаполнено(А) = ЗначениеЗаполнено(Б) Тогда
+//            ^ not:variable.assignment.bsl
+//                                 ^ keyword.operator.comparison.bsl
+    КонецЕсли;
 
 КонецПроцедуры
 // <- storage.type.bsl
