@@ -7,29 +7,10 @@ fileTypes: [
 uuid: "cf0633ff-beee-424a-a2f7-3dce4093e139"
 patterns: [
   {
-    name: "comment.line.double-slash.bsl"
-    match: "(//.*$)"
+    include: "#basic"
   }
   {
-    name: "string.quoted.double.bsl"
-    begin: "\\\""
-    end: "\\\"(?![\\\"])"
-    patterns: [
-      {
-        include: "#query"
-      }
-      {
-        name: "constant.character.escape.bsl"
-        match: "\\\"\\\""
-      }
-      {
-        name: "comment.line.double-slash.bsl"
-        match: "(^\\s*//.*$)"
-      }
-    ]
-  }
-  {
-    comment: "Proc and function defenition"
+    comment: "Proc and function definition"
     begin: "(?i:(?<=[^\\wа-яё\\.]|^)(Процедура|Procedure|Функция|Function)\\s+([a-zа-яё0-9_]+)\\s*\\()"
     beginCaptures:
       "1":
@@ -42,7 +23,11 @@ patterns: [
         name: "storage.modifier.bsl"
     patterns: [
       {
-        include: "$self"
+        include: "#basic"
+      }
+      {
+        name: "keyword.operator.assignment.bsl"
+        match: "(=)"
       }
       {
         name: "storage.modifier.bsl"
@@ -76,16 +61,20 @@ patterns: [
         name: "storage.modifier.bsl"
   }
   {
-    name: "constant.language.bsl"
-    match: "(?i:(?<=[^\\wа-яё\\.]|^)(Неопределено|Undefined|Истина|True|Ложь|False|NULL)(?=[^\\wа-яё\\.]|$))"
-  }
-  {
-    name: "constant.numeric.bsl"
-    match: "\\b((\\h{8}-(\\h{4}-){3}\\h{12})|\\d+\\.?\\d*)\\b"
-  }
-  {
-    name: "constant.other.date.bsl"
-    match: "\\'((\\d{4}[^\\d\\']*\\d{2}[^\\d\\']*\\d{2})([^\\d\\']*\\d{2}[^\\d\\']*\\d{2}([^\\d\\']*\\d{2})?)?)\\'"
+    comment: "Variable assignment"
+    name: "meta.var-single-variable.bsl"
+    begin: "(?i:(?<=;|^)\\s*([\\wа-яё]+))\\s*(=)"
+    beginCaptures:
+      "1":
+        name: "variable.assignment.bsl"
+      "2":
+        name: "keyword.operator.assignment.bsl"
+    end: "(?=;)"
+    patterns: [
+      {
+        include: "$self"
+      }
+    ]
   }
   {
     name: "storage.type.bsl"
@@ -120,16 +109,12 @@ patterns: [
     match: "<=|>=|=|<|>"
   }
   {
-    name: "keyword.operator.assignment.bsl"
-    match: "(=)"
-  }
-  {
     name: "keyword.operator.arithmetic.bsl"
     match: "(\\+|-|\\*|/|%)"
   }
   {
     name: "keyword.operator.bsl"
-    match: "(,|;|\\?)"
+    match: "(;|\\?)"
   }
   {
     name: "support.function.bsl"
@@ -264,12 +249,12 @@ patterns: [
   {
     comment: "Глобальный контекст - Свойства (классы)"
     name: "support.class.bsl"
-    match: "(?i:(?<=[^\\wа-яё\\.]|^)(WSСсылки|WSReferences|БиблиотекаКартинок|PictureLib|БиблиотекаМакетовОформленияКомпоновкиДанных|DataCompositionAppearanceTemplateLib|БиблиотекаСтилей|StyleLib|БизнесПроцессы|BusinessProcesses|ВнешниеИсточникиДанных|ExternalDataSources|ВнешниеОбработки|ExternalDataProcessors|ВнешниеОтчеты|ExternalReports|Документы|Documents|ДоставляемыеУведомления|DeliverableNotifications|ЖурналыДокументов|DocumentJournals|Задачи|Tasks|ИспользованиеРабочейДаты|WorkingDateUse|ИсторияРаботыПользователя|UserWorkHistory|Константы|Constants|КритерииОтбора|FilterCriteria|Метаданные|Metadata|Обработки|DataProcessors|ОтправкаДоставляемыхУведомлений|DeliverableNotificationSend|Отчеты|Reports|ПараметрыСеанса|SessionParameters|Перечисления|Enums|ПланыВидовРасчета|ChartsOfCalculationTypes|ПланыВидовХарактеристик|ChartsOfCharacteristicTypes|ПланыОбмена|ExchangePlans|ПланыСчетов|ChartsOfAccounts|ПолнотекстовыйПоиск|FullTextSearch|ПользователиИнформационнойБазы|InfoBaseUsers|Последовательности|Sequences|РасширенияКонфигурации|ConfigurationExtensions|РегистрыБухгалтерии|AccountingRegisters|РегистрыНакопления|AccumulationRegisters|РегистрыРасчета|CalculationRegisters|РегистрыСведений|InformationRegisters|РегламентныеЗадания|ScheduledJobs|СериализаторXDTO|XDTOSerializer|Справочники|Catalogs|СредстваГеопозиционирования|LocationTools|СредстваКриптографии|CryptoToolsManager|СредстваМультимедиа|MultimediaTools|СредстваПочты|MailTools|СредстваТелефонии|TelephonyTools|ФабрикаXDTO|XDTOFactory|ФоновыеЗадания|BackgroundJobs|ХранилищаНастроек)(?=[^\\wа-яё]|$))"
+    match: "(?i:(?<=[^\\wа-яё\\.]|^)(WSСсылки|WSReferences|БиблиотекаКартинок|PictureLib|БиблиотекаМакетовОформленияКомпоновкиДанных|DataCompositionAppearanceTemplateLib|БиблиотекаСтилей|StyleLib|БизнесПроцессы|BusinessProcesses|ВнешниеИсточникиДанных|ExternalDataSources|ВнешниеОбработки|ExternalDataProcessors|ВнешниеОтчеты|ExternalReports|Документы|Documents|ДоставляемыеУведомления|DeliverableNotifications|ЖурналыДокументов|DocumentJournals|Задачи|Tasks|ИспользованиеРабочейДаты|WorkingDateUse|ИсторияРаботыПользователя|UserWorkHistory|Константы|Constants|КритерииОтбора|FilterCriteria|Метаданные|Metadata|Обработки|DataProcessors|ОтправкаДоставляемыхУведомлений|DeliverableNotificationSend|Отчеты|Reports|ПараметрыСеанса|SessionParameters|Перечисления|Enums|ПланыВидовРасчета|ChartsOfCalculationTypes|ПланыВидовХарактеристик|ChartsOfCharacteristicTypes|ПланыОбмена|ExchangePlans|ПланыСчетов|ChartsOfAccounts|ПолнотекстовыйПоиск|FullTextSearch|ПользователиИнформационнойБазы|InfoBaseUsers|Последовательности|Sequences|РасширенияКонфигурации|ConfigurationExtensions|РегистрыБухгалтерии|AccountingRegisters|РегистрыНакопления|AccumulationRegisters|РегистрыРасчета|CalculationRegisters|РегистрыСведений|InformationRegisters|РегламентныеЗадания|ScheduledJobs|СериализаторXDTO|XDTOSerializer|Справочники|Catalogs|СредстваГеопозиционирования|LocationTools|СредстваКриптографии|CryptoToolsManager|СредстваМультимедиа|MultimediaTools|СредстваПочты|MailTools|СредстваТелефонии|TelephonyTools|ФабрикаXDTO|XDTOFactory|ФоновыеЗадания|BackgroundJobs|ХранилищаНастроек|SettingsStorages|ВстроенныеПокупки|InAppPurchases|ОтображениеРекламы|AdRepresentationПанельЗадачОС|OSTaskbar|ПроверкаВстроенныхПокупок|InAppPurchasesValidation)(?=[^\\wа-яё]|$))"
   }
   {
     comment: "Глобальный контекст - Свойства (переменные)"
     name: "support.variable.bsl"
-    match: "(?i:(?<=[^\\wа-яё\\.]|^)(ГлавныйИнтерфейс|MainInterface|ГлавныйСтиль|MainStyle|ПараметрЗапуска|LaunchParameter|РабочаяДата|WorkingDate|SettingsStorages|ХранилищеВариантовОтчетов|ReportsVariantsStorage|ХранилищеНастроекДанныхФорм|FormDataSettingsStorage|ХранилищеОбщихНастроек|CommonSettingsStorage|ХранилищеПользовательскихНастроекДинамическихСписков|DynamicListsUserSettingsStorage|ХранилищеПользовательскихНастроекОтчетов|ReportsUserSettingsStorage|ХранилищеСистемныхНастроек|SystemSettingsStorage)(?=[^\\wа-яё]|$))"
+    match: "(?i:(?<=[^\\wа-яё\\.]|^)(ГлавныйИнтерфейс|MainInterface|ГлавныйСтиль|MainStyle|ПараметрЗапуска|LaunchParameter|РабочаяДата|WorkingDate|ХранилищеВариантовОтчетов|ReportsVariantsStorage|ХранилищеНастроекДанныхФорм|FormDataSettingsStorage|ХранилищеОбщихНастроек|CommonSettingsStorage|ХранилищеПользовательскихНастроекДинамическихСписков|DynamicListsUserSettingsStorage|ХранилищеПользовательскихНастроекОтчетов|ReportsUserSettingsStorage|ХранилищеСистемныхНастроек|SystemSettingsStorage)(?=[^\\wа-яё]|$))"
   }
   {
     name: "storage.modifier.bsl"
@@ -317,5 +302,46 @@ repository:
       }
       {
         include: "source.sdbl"
+      }
+    ]
+  basic:
+    patterns: [
+      {
+        name: "comment.line.double-slash.bsl"
+        match: "(//.*$)"
+      }
+      {
+        name: "string.quoted.double.bsl"
+        begin: "\\\""
+        end: "\\\"(?![\\\"])"
+        patterns: [
+          {
+            include: "#query"
+          }
+          {
+            name: "constant.character.escape.bsl"
+            match: "\\\"\\\""
+          }
+          {
+            name: "comment.line.double-slash.bsl"
+            match: "(^\\s*//.*$)"
+          }
+        ]
+      }
+      {
+        name: "constant.language.bsl"
+        match: "(?i:(?<=[^\\wа-яё\\.]|^)(Неопределено|Undefined|Истина|True|Ложь|False|NULL)(?=[^\\wа-яё\\.]|$))"
+      }
+      {
+        name: "constant.numeric.bsl"
+        match: "\\b((\\h{8}-(\\h{4}-){3}\\h{12})|\\d+\\.?\\d*)\\b"
+      }
+      {
+        name: "constant.other.date.bsl"
+        match: "\\'((\\d{4}[^\\d\\']*\\d{2}[^\\d\\']*\\d{2})([^\\d\\']*\\d{2}[^\\d\\']*\\d{2}([^\\d\\']*\\d{2})?)?)\\'"
+      }
+      {
+        name: "keyword.operator.bsl"
+        match: "(,)"
       }
     ]
