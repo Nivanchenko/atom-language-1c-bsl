@@ -101,6 +101,16 @@ module.exports = Language1cBSL =
     class Language1cBSLBuildProvider extends EventEmitter
 
       constructor: (@cwd) ->
+        @subscriptions = new CompositeDisposable
+        @subscriptions.add atom.config.observe 'language-1c-bsl.onescriptPath', (@onescriptPath) =>
+
+      getCommandId: ->
+        if not @onescriptPath or @onescriptPath.length is 0
+          command = "oscript"
+        else
+          command = @onescriptPath
+
+        command
 
       getNiceName: ->
         '1C (BSL)'
