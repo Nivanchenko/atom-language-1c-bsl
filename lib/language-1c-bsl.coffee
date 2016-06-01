@@ -129,6 +129,12 @@ module.exports = Language1cBSL =
                 '^\\{Модуль (?<file>.+) / Ошибка в строке: (?<line>[0-9]+) / (?<message>.*)\\}$'
             ]
 
+          check =
+            name: 'OneScript: check',
+            sh: false,
+            exec: @getCommandId(),
+            args: [ '-encoding=utf-8', '-check', '{FILE_ACTIVE}' ]
+
           compile =
             name: 'OneScript: compile',
             sh: false,
