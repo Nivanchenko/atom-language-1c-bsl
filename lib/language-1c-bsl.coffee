@@ -17,7 +17,7 @@ module.exports = Language1cBSL =
     @subscriptions.add atom.config.observe 'language-1c-bsl.linterEntryPoint', (@linterEntryPoint) =>
     @subscriptions.add atom.config.observe 'language-1c-bsl.forceEnableExtendedUnicodeSupport', (enableExtendedUnicodeSupport) ->
       atom.config.set('autocomplete-plus.enableExtendedUnicodeSupport', enableExtendedUnicodeSupport)
-    
+
   deactivate: ->
     @subscriptions.dispose()
 
@@ -31,13 +31,13 @@ module.exports = Language1cBSL =
     Reg2 = /^([^\|\"]|\"[^\"]*\")*\"[^\"]*$/
     if (Reg1.exec(textRow) isnt null) or (Reg2.exec(textRow) isnt null)
       editor.insertText '|'
-    
+
   getCommandId: ->
     if not @onescriptPath or @onescriptPath.length is 0
       command = "oscript"
     else
       command = @onescriptPath
-    
+
     command
 
   provideLinter: ->
@@ -52,7 +52,7 @@ module.exports = Language1cBSL =
       filePath = textEditor.getPath()
       arrFilePath = filePath.split(".")
       return [] if arrFilePath.length == 0
-      
+
       extension = arrFilePath[arrFilePath.length - 1]
       if extension isnt "os" and not @lintOtherExtensions.includes(extension)
         return []
@@ -126,7 +126,7 @@ module.exports = Language1cBSL =
             exec: @getCommandId(),
             args: [ '-encoding=utf-8', '{FILE_ACTIVE}' ],
             errorMatch: [
-                '^\\{Модуль (?<file>.+) / Ошибка в строке: (?<line>[0-9]+) / (?<message>.*)\\}$'
+                '{Модуль (?<file>[^/]+) / Ошибка в строке: (?<line>[0-9]+) / (?<message>.*)'
             ]
 
           check =
