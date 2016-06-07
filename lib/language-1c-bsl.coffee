@@ -133,18 +133,27 @@ module.exports = Language1cBSL =
             name: 'OneScript: check',
             sh: false,
             exec: @getCommandId(),
-            args: [ '-encoding=utf-8', '-check', '{FILE_ACTIVE}' ]
+            args: [ '-encoding=utf-8', '-check', '{FILE_ACTIVE}' ],
+            errorMatch: [
+                '{Модуль (?<file>[^/]+) / Ошибка в строке: (?<line>[0-9]+) / (?<message>.*)'
+            ]
 
           compile =
             name: 'OneScript: compile',
             sh: false,
             exec: @getCommandId(),
-            args: [ '-encoding=utf-8', '-compile', '{FILE_ACTIVE}' ]
+            args: [ '-encoding=utf-8', '-compile', '{FILE_ACTIVE}' ],
+            errorMatch: [
+                '{Модуль (?<file>[^/]+) / Ошибка в строке: (?<line>[0-9]+) / (?<message>.*)'
+            ]
 
           make =
             name: 'OneScript: make',
             sh: false,
             exec: @getCommandId(),
-            args: [ '-encoding=utf-8', '-make', '{FILE_ACTIVE}', '{FILE_ACTIVE_NAME_BASE}.exe' ]
+            args: [ '-encoding=utf-8', '-make', '{FILE_ACTIVE}', '{FILE_ACTIVE_NAME_BASE}.exe' ],
+            errorMatch: [
+                '{Модуль (?<file>[^/]+) / Ошибка в строке: (?<line>[0-9]+) / (?<message>.*)'
+            ]
 
         ]
