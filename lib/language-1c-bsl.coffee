@@ -10,6 +10,7 @@ module.exports = Language1cBSL =
 
     @subscriptions = new CompositeDisposable
     @subscriptions.add atom.commands.add 'atom-text-editor', 'language-1c-bsl:addpipe': => @addpipe()
+    @subscriptions.add atom.commands.add 'atom-text-editor', 'language-1c-bsl:expand_abbreviation': => @expand_abbreviation()
 
     @subscriptions.add atom.config.observe 'language-1c-bsl.enableOneScriptLinter', (@enableOneScriptLinter) =>
     @subscriptions.add atom.config.observe 'language-1c-bsl.onescriptPath', (@onescriptPath) =>
@@ -31,6 +32,36 @@ module.exports = Language1cBSL =
     Reg2 = /^([^\|\"]|\"[^\"]*\")*\"[^\"]*$/
     if (Reg1.exec(textRow) isnt null) or (Reg2.exec(textRow) isnt null)
       editor.insertText '|'
+
+  expand_abbreviation: ->
+    editor = atom.workspace.getActiveTextEditor()
+    if  editor.getSelectedText()
+      atom.commands.dispatch(atom.views.getView(editor), 'editor:indent')
+      return
+    cursorPos = editor.getLastCursor().getBufferPosition()
+    translatedPos = cursorPos.translate([0, -2])
+    lastTwo = editor.getTextInBufferRange([translatedPos, cursorPos])
+    buffer = editor.getTextInBufferRange([editor.getLastCursor().getCurrentLineBufferRange().start, translatedPos])
+    match = buffer.match(new RegExp("([\\w_а-яё]+\\s?)$", "i"))
+    if ((lastTwo == '++' || lastTwo == '--' || lastTwo == '+=' || lastTwo == '-=' || lastTwo == '*=' || lastTwo == '/=' || lastTwo == '%=') && match isnt null)
+      postfix = " + 1;"
+      if (lastTwo == '--')
+        postfix = " - 1;"
+      else if (lastTwo == '+=')
+        postfix = " + "
+      else if (lastTwo == '-=')
+        postfix = " - "
+      else if (lastTwo == '*=')
+        postfix = " * "
+      else if (lastTwo == '/=')
+        postfix = " / "
+      else if (lastTwo == '%=')
+        postfix = " % "
+      lengthMatch = match[1].length
+      beginMatch = translatedPos.translate([0, - lengthMatch])
+      editor.setTextInBufferRange([beginMatch, cursorPos], match[1] + " = " + match[1] + postfix)
+    else
+      editor.insertText '\t'
 
   getCommandId: ->
     if not @onescriptPath or @onescriptPath.length is 0
