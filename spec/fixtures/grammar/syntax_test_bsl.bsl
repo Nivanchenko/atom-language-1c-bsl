@@ -181,6 +181,9 @@
 //                                 ^ keyword.operator.comparison.bsl
     КонецЕсли;
 
+    // TODO:
+//     ^^^^	storage.type.class.todo
+
 КонецПроцедуры
 // <- storage.type.bsl
 
