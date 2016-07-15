@@ -10,7 +10,7 @@ module.exports = Language1cBSL =
 
     @subscriptions = new CompositeDisposable
     @subscriptions.add atom.commands.add 'atom-text-editor', 'language-1c-bsl:addpipe': => @addpipe()
-    @subscriptions.add atom.commands.add 'atom-text-editor', 'language-1c-bsl:expand_abbreviation': => @expand_abbreviation()
+    @subscriptions.add atom.commands.add 'atom-text-editor', 'language-1c-bsl:expandAbbreviation': => @expandAbbreviation()
 
     @subscriptions.add atom.config.observe 'language-1c-bsl.enableOneScriptLinter', (@enableOneScriptLinter) =>
     @subscriptions.add atom.config.observe 'language-1c-bsl.onescriptPath', (@onescriptPath) =>
@@ -33,7 +33,7 @@ module.exports = Language1cBSL =
     if (Reg1.exec(textRow) isnt null) or (Reg2.exec(textRow) isnt null)
       editor.insertText '|'
 
-  expand_abbreviation: ->
+  expandAbbreviation: ->
     editor = atom.workspace.getActiveTextEditor()
     if  editor.getSelectedText()
       atom.commands.dispatch(atom.views.getView(editor), 'editor:indent')

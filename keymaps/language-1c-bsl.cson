@@ -1,4 +1,4 @@
 "atom-text-editor[data-grammar='source bsl']":
   'enter': 'language-1c-bsl:addpipe'
   'alt-shift-f': 'editor:auto-indent'
-  'tab': 'language-1c-bsl:expand_abbreviation'
+  'tab': 'language-1c-bsl:expandAbbreviation'
