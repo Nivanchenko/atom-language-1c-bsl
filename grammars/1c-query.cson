@@ -9,7 +9,8 @@ patterns: [
   }
   {
     name: "comment.line.double-slash.sdbl"
-    match: "(//.*)"
+    begin: "//"
+    end: "$"
   }
   {
     name: "string.quoted.double.sdbl"

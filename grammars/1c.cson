@@ -290,7 +290,8 @@ repository:
     patterns: [
       {
         name: "comment.line.double-slash.bsl"
-        match: "(^\\s*//.*$)"
+        begin: "^\\s*//"
+        end: "$"
       }
       {
         name: "comment.line.double-slash.sdbl"
@@ -308,7 +309,8 @@ repository:
     patterns: [
       {
         name: "comment.line.double-slash.bsl"
-        match: "(//.*$)"
+        begin: "//"
+        end: "$"
       }
       {
         name: "string.quoted.double.bsl"
