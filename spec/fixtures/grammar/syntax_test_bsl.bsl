@@ -192,6 +192,14 @@
 //  ^ keyword.control.bsl
 КонецПроцедуры
 
+&Перед("ПередЗаписью")
+// <- keyword.other.annotation.bsl
+// ^^^ keyword.other.annotation.bsl
+//     ^^^^^^^^^^^^^^ string.quoted.double.bsl
+Процедура Расш1_ПередЗаписью()
+
+КонецПроцедуры
+
 #КонецЕсли
 // <- keyword.other.preprocessor.bsl
 // ^ keyword.other.preprocessor.bsl
