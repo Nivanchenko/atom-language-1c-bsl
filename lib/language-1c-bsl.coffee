@@ -10,6 +10,7 @@ module.exports = Language1cBSL =
 
     @subscriptions = new CompositeDisposable
     @subscriptions.add atom.commands.add 'atom-text-editor', 'language-1c-bsl:addpipe': => @addpipe()
+    @subscriptions.add atom.commands.add 'atom-text-editor', 'language-1c-bsl:addSlashes': => @addSlashes()
     @subscriptions.add atom.commands.add 'atom-text-editor', 'language-1c-bsl:expandAbbreviation': => @expandAbbreviation()
 
     @subscriptions.add atom.config.observe 'language-1c-bsl.enableOneScriptLinter', (@enableOneScriptLinter) =>
@@ -32,6 +33,16 @@ module.exports = Language1cBSL =
     Reg2 = /^([^\|\"]|\"[^\"]*\")*\"[^\"]*$/
     if (Reg1.exec(textRow) isnt null) or (Reg2.exec(textRow) isnt null)
       editor.insertText '|'
+
+  addSlashes: ->
+    editor = atom.workspace.getActiveTextEditor()
+    cursorPos = editor.getLastCursor().getBufferPosition()
+    beginRow = editor.getLastCursor().getCurrentLineBufferRange().start
+    textRow = editor.getTextInBufferRange([beginRow, cursorPos])
+    editor.insertText '\n'
+    RegComment = /^.*\/\/.*$/
+    if RegComment.exec(textRow) isnt null
+      editor.insertText '//'
 
   expandAbbreviation: ->
     editor = atom.workspace.getActiveTextEditor()
