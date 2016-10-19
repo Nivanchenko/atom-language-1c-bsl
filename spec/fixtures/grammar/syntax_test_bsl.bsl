@@ -21,6 +21,7 @@
 Процедура ИмяПроцедуры(
 // <- storage.type.bsl
 //        ^ entity.name.function.bsl
+//                    ^ punctuation.bracket.begin.bsl
     Знач ПараметрСКонстантой,
 //  ^ storage.modifier.bsl
 //       ^ variable.parameter.bsl
@@ -36,6 +37,7 @@
     ПараметрСДефолтнымЧисловымЗначением = 0) Экспорт
 //                                      ^ keyword.operator.assignment.bsl
 //                                        ^ constant.numeric.bsl
+//                                         ^ punctuation.bracket.end.bsl
 //                                           ^ storage.modifier.bsl
     Б = "текст с экраннированной "" кавычкой" + "и конкатенаций""";
 //       ^ string.quoted.double.bsl
@@ -132,6 +134,9 @@
     Пока ЗначениеЗаполнено(Б) Цикл
 //  ^ keyword.control.repeat.bsl
 //       ^ support.function.bsl
+//                        ^ punctuation.bracket.begin.bsl
+//                         ^ not:punctuation.bracket.begin.bsl
+//                          ^ punctuation.bracket.end.bsl
         Прервать;
 //      ^ keyword.control.bsl        
     КонецЦикла;
