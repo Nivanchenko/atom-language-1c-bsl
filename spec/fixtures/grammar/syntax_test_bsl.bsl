@@ -9,7 +9,7 @@
 //    ^ variable.bsl
 //      ^ storage.modifier.bsl
 
-#Если Сервер Тогда 
+#Если Сервер Тогда
 // <- keyword.other.preprocessor.bsl
 //    ^^^^^^ keyword.other.preprocessor.bsl
 
@@ -101,7 +101,7 @@
 //  ^ not:support.function.bsl
 //          ^^^ constant.numeric.bsl
 //              ^ keyword.operator.arithmetic.bsl
-    
+
     Дата = '00010101000000';
 //         ^^^^^^^^^^^^^^^^ constant.other.date.bsl
     КороткаяДата = '00010101';
@@ -130,7 +130,7 @@
         ОбычныйПараметр = Ложь;
     КонецЕсли;
 //  ^ keyword.control.conditional.bsl
-    
+
     Пока ЗначениеЗаполнено(Б) Цикл
 //  ^ keyword.control.repeat.bsl
 //       ^ support.function.bsl
@@ -138,10 +138,10 @@
 //                         ^ not:punctuation.bracket.begin.bsl
 //                          ^ punctuation.bracket.end.bsl
         Прервать;
-//      ^ keyword.control.bsl        
+//      ^ keyword.control.bsl
     КонецЦикла;
 //  ^ keyword.control.repeat.bsl
-    
+
     НевстроеннаяПроцедура();
 //  ^ not:support.function.bsl
 
@@ -151,10 +151,10 @@
     НовыйОбъектСкобка = Новый("ТаблицаЗначений");
 //                      ^^^^^ support.function.bsl
 //                           ^ not:support.function.bsl
-    
+
     ПрефиксЗначениеЗаполненоПостфикс = "";
 //  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not:support.function.bsl
-    
+
     // Проверка на корректность обработки начала и конца слова
     Объект.Сообщить().Если().Цикл().Новый;
 //         ^^^^^^^^                 ^^^^^ not:support.function.bsl
@@ -196,8 +196,8 @@
 КонецПроцедуры
 
 &Перед("ПередЗаписью")
-// <- keyword.other.annotation.bsl
-// ^^^ keyword.other.annotation.bsl
+// <- storage.type.annotation.bsl
+// ^^^ storage.type.annotation.bsl
 //     ^^^^^^^^^^^^^^ string.quoted.double.bsl
 Процедура Расш1_ПередЗаписью()
 
