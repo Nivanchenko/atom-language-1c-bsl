@@ -95,8 +95,6 @@
     СтрокаСоСловомВыбрать = "Some selected text";
 //                                ^^^^^^ not:keyword.control.sdbl
 
-    GUID = 00000000-0000-0000-0000-000000000000;
-//         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ constant.numeric.bsl
     Число = 0.0 * 100;
 //  ^ not:support.function.bsl
 //          ^^^ constant.numeric.bsl
