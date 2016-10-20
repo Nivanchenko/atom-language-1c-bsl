@@ -727,7 +727,7 @@
           'type': 'function'
           'rightLabel': 'global function'
           'text': 'ОповеститьОбИзменении'
-        }, {
+          }, {
           'type': 'function'
           'rightLabel': 'global function'
           'text': 'ОтключитьОбработчикЗапросаНастроекКлиентаЛицензирования'
@@ -1366,7 +1366,7 @@
           'type': 'function'
           'rightLabel': 'global function'
           'text': 'СоздатьФабрикуXDTO'
-        }, {
+          }, {
           'type': 'function'
           'rightLabel': 'global function'
           'text': 'СокрЛ'
@@ -2400,7 +2400,7 @@
           'type': 'function'
           'rightLabel': 'global function'
           'text': 'NotifyChanged'
-        }, {
+          }, {
           'type': 'function'
           'rightLabel': 'global function'
           'text': 'DetachLicensingClientParametersRequestHandler'
@@ -3039,7 +3039,7 @@
           'type': 'function'
           'rightLabel': 'global function'
           'text': 'CreateXDTOFactory'
-        }, {
+          }, {
           'type': 'function'
           'rightLabel': 'global function'
           'text': 'TrimL'
@@ -3497,6 +3497,11 @@
         }, {
           'type': 'variable'
           'rightLabel': 'global variable'
+          'text': 'ИнформацияОбИнтернетСоединении'
+          'description': 'Предоставляет доступ к информации об интернет-соединении.'
+        }, {
+          'type': 'variable'
+          'rightLabel': 'global variable'
           'text': 'ИспользованиеРабочейДаты'
           'description': 'Определяет режим использования рабочей даты.'
         }, {
@@ -3662,6 +3667,11 @@
         }, {
           'type': 'variable'
           'rightLabel': 'global variable'
+          'text': 'СредстваОтображенияРекламы'
+          'description': 'Предоставляет доступ к средствам отображения рекламы на мобильной платформы.'
+        }, {
+          'type': 'variable'
+          'rightLabel': 'global variable'
           'text': 'СредстваПочты'
           'description': 'Предоставляет доступ к средствам почты мобильной платформы.'
         }, {
@@ -3674,6 +3684,11 @@
           'rightLabel': 'global variable'
           'text': 'ФабрикаXDTO'
           'description': 'Фабрика XDTO, содержащая все пакеты XDTO, имеющиеся в конфигурации, а также предопределенные пакеты (например, пакет типов XML схемы).'
+        }, {
+          'type': 'variable'
+          'rightLabel': 'global variable'
+          'text': 'ФайловыеПотоки'
+          'description': 'Предоставляет доступ к менеджеру файловых потоков.'
         }, {
           'type': 'variable'
           'rightLabel': 'global variable'
@@ -3789,6 +3804,11 @@
           'rightLabel': 'global variable'
           'text': 'Tasks'
           'description': 'Используется для доступа к определенным в конфигурации задачам.'
+        }, {
+          'type': 'variable'
+          'rightLabel': 'global variable'
+          'text': 'InternetConnectionInformation'
+          'description': 'Предоставляет доступ к информации об интернет-соединении.'
         }, {
           'type': 'variable'
           'rightLabel': 'global variable'
@@ -3957,6 +3977,11 @@
         }, {
           'type': 'variable'
           'rightLabel': 'global variable'
+          'text': 'AdvertisingPresentationTools'
+          'description': 'Предоставляет доступ к средствам отображения рекламы на мобильной платформы.'
+        }, {
+          'type': 'variable'
+          'rightLabel': 'global variable'
           'text': 'MailTools'
           'description': 'Предоставляет доступ к средствам почты мобильной платформы.'
         }, {
@@ -3969,6 +3994,11 @@
           'rightLabel': 'global variable'
           'text': 'XDTOFactory'
           'description': 'Фабрика XDTO, содержащая все пакеты XDTO, имеющиеся в конфигурации, а также предопределенные пакеты (например, пакет типов XML схемы).'
+        }, {
+          'type': 'variable'
+          'rightLabel': 'global variable'
+          'text': 'FileStreams'
+          'description': 'Предоставляет доступ к менеджеру файловых потоков.'
         }, {
           'type': 'variable'
           'rightLabel': 'global variable'
