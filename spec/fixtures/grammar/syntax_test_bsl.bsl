@@ -16,8 +16,8 @@
 // Комментарий процедуры
 // <- comment.line.double-slash.bsl
 &НаСервере
-// <- storage.modifier.bsl
-// ^ storage.modifier.bsl
+// <- storage.modifier.directive.bsl
+// ^ storage.modifier.directive.bsl
 Процедура ИмяПроцедуры(
 // <- storage.type.bsl
 //        ^ entity.name.function.bsl
