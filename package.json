@@ -19,7 +19,6 @@
     "atom-package-deps": "^4.3.1"
   },
   "devDependencies": {
-    "atom-grammar-test": "^0.6.3",
     "coffeelint": "^1.16.0"
   },
   "package-deps": [
