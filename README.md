@@ -5,6 +5,7 @@
 [![Join the chat at https://gitter.im/xDrivenDevelopment/1c-syntax](https://badges.gitter.im/xDrivenDevelopment/1c-syntax.svg)](https://gitter.im/xDrivenDevelopment/1c-syntax?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![GitHub release](https://img.shields.io/github/release/xDrivenDevelopment/atom-language-1c-bsl.svg)](https://github.com/xDrivenDevelopment/atom-language-1c-bsl/blob/master/CHANGELOG.md)
 [![Dependency Status](https://gemnasium.com/badges/github.com/xDrivenDevelopment/atom-language-1c-bsl.svg)](https://gemnasium.com/github.com/xDrivenDevelopment/atom-language-1c-bsl)
+[![Greenkeeper badge](https://badges.greenkeeper.io/xDrivenDevelopment/atom-language-1c-bsl.svg)](https://greenkeeper.io/)
 
 Добавляет подсветку встроенного языка 1С:Предпрятие 8 файлам \*.bsl и \*.os - синтаксис `1C (BSL)`.  
 Добавляет подсветку текста запросов языка запросов 1С: внутри текста модуля или отдельно - синтаксис `1C (Query)`.
