@@ -113,7 +113,7 @@ patterns: [
         name: "variable.assignment.bsl"
       "2":
         name: "keyword.operator.assignment.bsl"
-    end: "(?=;)"
+    end: "(?i:(?=(;|Иначе|Конец|Els|End)))"
     patterns: [
       {
         include: "#basic"
@@ -130,6 +130,10 @@ patterns: [
   {
     name: "keyword.control.import.bsl"
     match: "(?i)#(Использовать|Use)(?=[^\\wа-яё\\.]|$)"
+  }
+  {
+    name: "keyword.control.native.bsl"
+    match: "(?i)#native"
   }
   {
     name: "keyword.control.bsl"
